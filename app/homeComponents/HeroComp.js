@@ -26,7 +26,8 @@ export const HeroComp = () => {
           Welcome to <br></br>Wall Street Sentiments
         </Typography>
         <Typography variant="h5" sx={{ paddingTop: 2 }}>
-          Want to see what our ML models predict for today's most talked stocks?
+          Want to see what our ML models predict for today&apos; most talked
+          stocks?
         </Typography>
         <Box sx={{ paddingTop: 5 }}>
           <Button
