@@ -4,6 +4,7 @@ import { Box, Typography, Button } from "@mui/material";
 import React from "react";
 import TableCompHome from "./TableCompHome";
 import { useRouter } from "next/navigation";
+import { TypeAnimation } from "react-type-animation";
 
 export const HeroComp = () => {
   const router = useRouter();
@@ -23,7 +24,19 @@ export const HeroComp = () => {
         className="firstColumnInMD"
       >
         <Typography variant="h3">
-          Welcome to <br></br>Wall Street Sentiments
+          Welcome to <br></br>W
+          <TypeAnimation
+            sequence={[
+              "all Street Sentiments",
+              () => {
+                console.log("Sequence completed");
+              },
+            ]}
+            wrapper="span"
+            cursor={false}
+            repeat={1}
+            speed={10}
+          ></TypeAnimation>
         </Typography>
         <Typography variant="h5" sx={{ paddingTop: 2 }}>
           Want to see what our ML models predict for today&apos;s most talked
