@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography, Button, Grow } from "@mui/material";
 import React from "react";
 import TableCompHome from "./TableCompHome";
 import { useRouter } from "next/navigation";
@@ -41,14 +41,16 @@ export const HeroComp = () => {
           />
         </Typography>
         <Box sx={{ paddingTop: 5 }}>
-          <Button
-            variant="contained"
-            color="secondary"
-            sx={{ mr: 2, display: isTyping ? "none" : "block" }}
-            onClick={() => router.push("dashboard")}
-          >
-            Get started
-          </Button>
+          <Grow in={!isTyping}>
+            <Button
+              variant="contained"
+              color="secondary"
+              sx={{ mr: 2 }}
+              onClick={() => router.push("dashboard")}
+            >
+              Get started
+            </Button>
+          </Grow>
         </Box>
       </Box>
       <Box
