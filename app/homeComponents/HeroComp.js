@@ -8,6 +8,8 @@ import { TypeAnimation } from "react-type-animation";
 
 export const HeroComp = () => {
   const router = useRouter();
+  const [isTyping, setIsTyping] = React.useState(true);
+
   return (
     <Box
       sx={{
@@ -24,29 +26,25 @@ export const HeroComp = () => {
         className="firstColumnInMD"
       >
         <Typography variant="h3">
-          Welcome to <br></br>W
-          <TypeAnimation
-            sequence={[
-              "all Street Sentiments",
-              () => {
-                console.log("Sequence completed");
-              },
-            ]}
-            wrapper="span"
-            cursor={false}
-            repeat={1}
-            speed={10}
-          ></TypeAnimation>
+          Welcome to <br></br>Wall Street Sentiments
         </Typography>
         <Typography variant="h5" sx={{ paddingTop: 2 }}>
-          Want to see what our ML models predict for today&apos;s most talked
-          stocks?
+          <TypeAnimation
+            cursor={false}
+            sequence={[
+              "Want to see what our ML models predict for today's most talked stocks?",
+              750,
+              () => setIsTyping(false),
+            ]}
+            wrapper="span"
+            speed={70}
+          />
         </Typography>
         <Box sx={{ paddingTop: 5 }}>
           <Button
             variant="contained"
             color="secondary"
-            sx={{ mr: 2 }}
+            sx={{ mr: 2, display: isTyping ? "none" : "block" }}
             onClick={() => router.push("dashboard")}
           >
             Get started
