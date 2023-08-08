@@ -38,10 +38,11 @@ export const HeroComp = () => {
             Welcome to <br></br>Wall Street Sentiments
           </Typography>
           <Typography variant="h5" sx={{ paddingTop: 2 }} align="center">
+            W
             <TypeAnimation
               cursor={false}
               sequence={[
-                "Want to see what our ML models predict for today's most talked stocks?",
+                "ant to see what our ML models predict for today's most talked stocks?",
                 750,
                 () => setIsTyping(false),
               ]}
