@@ -24,23 +24,39 @@ export const HeroComp = () => {
           paddingTop: { xs: 5, md: 20 },
         }}
         className="firstColumnInMD"
+      >
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: {
+              xs: "center",
+            },
+          }}
         >
-          <Typography variant="h3">
+          <Typography variant="h3" align="center">
             Welcome to <br></br>Wall Street Sentiments
           </Typography>
-          <Typography variant="h5" sx={{ paddingTop: 2 }}>
+          <Typography variant="h5" sx={{ paddingTop: 2 }} align="center">
             <TypeAnimation
               cursor={false}
               sequence={[
-              "Want to see what our ML models predict for today's most talked stocks?",
+                "Want to see what our ML models predict for today's most talked stocks?",
                 750,
                 () => setIsTyping(false),
               ]}
               wrapper="span"
-            speed={70}
+              speed={70}
             />
           </Typography>
-        <Box sx={{ paddingTop: 5 }}>
+        </Box>
+        <Box
+          sx={{
+            paddingTop: 5,
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
           <Grow in={!isTyping}>
             <Button
               variant="outlined"
