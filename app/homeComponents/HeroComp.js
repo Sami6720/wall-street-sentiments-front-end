@@ -24,28 +24,32 @@ export const HeroComp = () => {
           paddingTop: { xs: 5, md: 20 },
         }}
         className="firstColumnInMD"
-      >
-        <Typography variant="h3">
-          Welcome to <br></br>Wall Street Sentiments
-        </Typography>
-        <Typography variant="h5" sx={{ paddingTop: 2 }}>
-          <TypeAnimation
-            cursor={false}
-            sequence={[
+        >
+          <Typography variant="h3">
+            Welcome to <br></br>Wall Street Sentiments
+          </Typography>
+          <Typography variant="h5" sx={{ paddingTop: 2 }}>
+            <TypeAnimation
+              cursor={false}
+              sequence={[
               "Want to see what our ML models predict for today's most talked stocks?",
-              750,
-              () => setIsTyping(false),
-            ]}
-            wrapper="span"
+                750,
+                () => setIsTyping(false),
+              ]}
+              wrapper="span"
             speed={70}
-          />
-        </Typography>
+            />
+          </Typography>
         <Box sx={{ paddingTop: 5 }}>
           <Grow in={!isTyping}>
             <Button
-              variant="contained"
-              color="secondary"
-              sx={{ mr: 2 }}
+              variant="outlined"
+              sx={{
+                mr: 2,
+                border: "2px solid",
+                color: "black",
+                borderRadius: 10,
+              }}
               onClick={() => router.push("dashboard")}
             >
               Get started
