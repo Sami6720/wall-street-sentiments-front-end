@@ -19,6 +19,7 @@ import PropTypes from "prop-types";
 import ControlPanelCard from "./components/ControlPanelCard";
 import LineGraph from "./components/LineGraph";
 import PieGraph from "./components/PieGraph";
+import TabsComp from "./components/TabsComp";
 
 import { useDispatch, useSelector } from "react-redux";
 import { getModelPerfMetrics } from "../redux/slices/async/modelPerfMetrics";
@@ -154,6 +155,7 @@ export default function Dashboard() {
         >
           {kpiCards}
         </Box>
+        <TabsComp></TabsComp>
       </Box>
     </Box>
   );
