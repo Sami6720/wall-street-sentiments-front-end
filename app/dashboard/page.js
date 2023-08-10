@@ -2,7 +2,19 @@
 
 import React, { useEffect } from "react";
 import { KpiCard } from "./components/KpiCard";
-import { Box, CircularProgress, Container } from "@mui/material";
+import {
+  Box,
+  CircularProgress,
+  Container,
+  Divider,
+  Drawer,
+  SwipeableDrawer,
+  Tab,
+  Tabs,
+  Typography,
+} from "@mui/material";
+
+import PropTypes from "prop-types";
 // import TableCompDash from "./components/TableCompDash";
 import ControlPanelCard from "./components/ControlPanelCard";
 import LineGraph from "./components/LineGraph";
@@ -91,41 +103,56 @@ export default function Dashboard() {
     : null;
 
   return (
-    <Container>
+    <Box className="ComponentHolder" display="flex">
       <Box
+        className="ControlPanelSideBar"
         sx={{
+          width: { xs: "100%", md: "15%" },
+          padding: "1rem",
           display: "flex",
-          flexDirection: { xs: "column", md: "row" },
-          paddingTop: 5,
-          justifyContent: "space-evenly",
-          flexWrap: "wrap",
+          flexDirection: "column",
+          borderRight: "1px solid #e0e0e0",
         }}
-        className="kpiCardContainer"
       >
-        {modelPerfMetricsState.loading ? (
-          <CircularProgress></CircularProgress>
-        ) : (
-          kpiCards
-        )}
+        <Typography
+          variant="h4"
+          noWrap
+          component="a"
+          href="/"
+          sx={{
+            mr: 2,
+            fontWeight: 500,
+            letterSpacing: ".3rem",
+            color: "inherit",
+            textDecoration: "none",
+            alignSelf: "center",
+          }}
+        >
+          WSS
+        </Typography>
+        <ControlPanelCard />
       </Box>
       <Box
-        className="tableAndVizContainer"
+        className="MainContent"
         sx={{
+          width: { xs: "100%", md: "85%" },
+          padding: "1rem",
           display: "flex",
-          flexDirection: { xs: "column", md: "row" },
-          flexWrap: "wrap",
-          justifyContent: "space-evenly",
-          alignItems: "stretch",
+          flexDirection: "column",
         }}
       >
         <Box
+          className="KpiCardContainer"
+          display="flex"
+          flexWrap="wrap"
+          justifyContent="space-between"
           sx={{
-            width: { xs: "1", md: "30%" },
-            className: "controlPanelCardContainer",
-            paddingTop: 5,
+            paddingBottom: "1rem",
+            marginBottom: "1rem",
+            flexDirection: { xs: "column", md: "row" },
           }}
         >
-          <ControlPanelCard></ControlPanelCard>
+          {kpiCards}
         </Box>
         <Box
           sx={{
@@ -137,24 +164,17 @@ export default function Dashboard() {
           <TableCompDash></TableCompDash>
         </Box>
         <Box
+          className="table"
           sx={{
-            width: { xs: "1", md: "30%" },
-            className: "pieGraphContainer",
-            paddingTop: 5,
+            width: { xs: "100%", md: "100%" },
+            padding: "1",
+            display: "flex",
+            flexDirection: "column",
           }}
         >
-          <PieGraph></PieGraph>
-        </Box>
-        <Box
-          sx={{
-            width: { xs: "1", md: "60%" },
-            className: "lineGraphContainer",
-            paddingTop: 5,
-          }}
-        >
-          <LineGraph></LineGraph>
+          <TableCompDash />
         </Box>
       </Box>
-    </Container>
+    </Box>
   );
 }
