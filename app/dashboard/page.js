@@ -156,23 +156,12 @@ export default function Dashboard() {
         </Box>
         <Box
           sx={{
-            width: { xs: "1", md: "60%" },
+            width: { xs: "1", md: "100%" },
             paddingTop: 5,
           }}
           className="tableContainer"
         >
           <TableCompDash></TableCompDash>
-        </Box>
-        <Box
-          className="table"
-          sx={{
-            width: { xs: "100%", md: "100%" },
-            padding: "1",
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          <TableCompDash />
         </Box>
       </Box>
     </Box>
