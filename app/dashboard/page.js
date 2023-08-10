@@ -154,15 +154,6 @@ export default function Dashboard() {
         >
           {kpiCards}
         </Box>
-        <Box
-          sx={{
-            width: { xs: "1", md: "100%" },
-            paddingTop: 5,
-          }}
-          className="tableContainer"
-        >
-          <TableCompDash></TableCompDash>
-        </Box>
       </Box>
     </Box>
   );
