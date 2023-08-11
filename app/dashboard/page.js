@@ -37,10 +37,10 @@ export default function Dashboard() {
   const metricNameToPurposeMapping = {
     historic_buy_predictions_profit: "Historic Predictions Profit ($)",
     historic_not_buy_predictions_save: "Historic Predictions Save ($)",
-    cumulative_accuracy: "Cumulative Accuracy (%)",
+    // cumulative_accuracy: "Cumulative Accuracy (%)",
     // total_good_days_accuracy_wise: "Good Days Accuracy Wise (Days)",
-    // total_good_days_money_wise: "Good Days Money Wise (Days)",
-    // total_days: "Total Days Model In Use (Days)",
+    total_good_days_money_wise: "Good Days Money Wise (Days)",
+    total_days: "Total Days Model In Use (Days)",
   };
 
   const getKpiCardBorderColor = (metricName, metricValue) => {
@@ -67,8 +67,8 @@ export default function Dashboard() {
             <Box
               key={metricName}
               sx={{
-                width: { xs: "1", md: "30%" },
-                height: { xs: "1", md: "30%" },
+                width: { xs: "1", md: "23%" },
+                height: { xs: "1", md: "23%" },
               }}
               className="modelAccuracyKPICard"
             >
@@ -117,7 +117,7 @@ export default function Dashboard() {
       <Box
         className="MainContent"
         sx={{
-          width: { xs: "100%", md: "85%" },
+          width: { xs: "85%", md: "85%" },
           padding: "1rem",
           display: "flex",
           flexDirection: "column",
