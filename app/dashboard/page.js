@@ -2,34 +2,15 @@
 
 import React, { useEffect } from "react";
 import { KpiCard } from "./components/KpiCard";
-import {
-  Box,
-  CircularProgress,
-  Container,
-  Divider,
-  Drawer,
-  SwipeableDrawer,
-  Tab,
-  Tabs,
-  Typography,
-} from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
-import PropTypes from "prop-types";
-// import TableCompDash from "./components/TableCompDash";
 import ControlPanelCard from "./components/ControlPanelCard";
-import LineGraph from "./components/LineGraph";
-import PieGraph from "./components/PieGraph";
 import TabsComp from "./components/TabsComp";
 
 import { useDispatch, useSelector } from "react-redux";
 import { getModelPerfMetrics } from "../redux/slices/async/modelPerfMetrics";
 import { getModelPredictions } from "../redux/slices/async/modelPredictions";
 import { getStockMetrics } from "../redux/slices/async/stockMetricsSlice";
-import dynamic from "next/dynamic";
-
-const TableCompDash = dynamic(() => import("./components/TableCompDash"), {
-  ssr: false,
-});
 
 export default function Dashboard() {
   const dispatch = useDispatch();
@@ -151,6 +132,7 @@ export default function Dashboard() {
             paddingBottom: "1rem",
             marginBottom: "1rem",
             flexDirection: { xs: "column", md: "row" },
+            overflowX: "auto",
           }}
         >
           {kpiCards}
