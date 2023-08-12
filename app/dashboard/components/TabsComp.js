@@ -4,9 +4,13 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import TableCompDash from "./TableCompDash";
 import LineGraph from "./LineGraph";
 import PieGraph from "./PieGraph";
+import dynamic from "next/dynamic";
+
+const TableCompDash = dynamic(() => import("./TableCompDash"), {
+  ssr: false,
+});
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -56,9 +60,9 @@ export default function BasicTabs() {
           onChange={handleChange}
           aria-label="basic tabs example"
         >
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
+          <Tab label="Predictions Table" {...a11yProps(0)} />
+          <Tab label="Numeric Data Viz" {...a11yProps(1)} />
+          <Tab label="Categorical Data Viz" {...a11yProps(2)} />
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
