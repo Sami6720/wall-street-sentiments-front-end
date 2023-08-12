@@ -15,10 +15,7 @@ export const KpiCard = (props) => {
   return (
     <Card
       sx={{
-        borderRadius: 5,
-        boxShadow: 1,
-        padding: 2,
-        margin: 2,
+        borderRadius: 3,
         display: "flex",
         justifyContent: "center",
         flexDirection: "column",
@@ -32,7 +29,7 @@ export const KpiCard = (props) => {
           {props.loading ? (
             <CircularProgress />
           ) : (
-            <Typography variant="h3">{props.value}</Typography>
+            <Typography variant="h4">{props.value}</Typography>
           )}
           <Typography>{props.purpose}</Typography>
         </Box>
