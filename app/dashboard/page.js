@@ -69,6 +69,7 @@ export default function Dashboard() {
               sx={{
                 width: { xs: "1", md: "23%" },
                 height: { xs: "1", md: "23%" },
+                padding: { md: "1rem" },
               }}
               className="modelAccuracyKPICard"
             >
@@ -89,10 +90,10 @@ export default function Dashboard() {
       <Box
         className="ControlPanelSideBar"
         sx={{
-          width: { xs: "100%", md: "15%" },
+          width: { md: "15%" },
           padding: "1rem",
-          display: "flex",
-          flexDirection: "column",
+          display: { md: "flex" },
+          flexDirection: { md: "column" },
           borderRight: "1px solid #e0e0e0",
         }}
       >
@@ -126,13 +127,11 @@ export default function Dashboard() {
         <Box
           className="KpiCardContainer"
           display="flex"
-          flexWrap="wrap"
           justifyContent="space-between"
           sx={{
             paddingBottom: "1rem",
             marginBottom: "1rem",
             flexDirection: { xs: "column", md: "row" },
-            overflowX: "auto",
           }}
         >
           {kpiCards}
