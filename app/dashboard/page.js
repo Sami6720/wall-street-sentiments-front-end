@@ -39,8 +39,8 @@ export default function Dashboard() {
     historic_not_buy_predictions_save: "Historic Predictions Save ($)",
     // cumulative_accuracy: "Cumulative Accuracy (%)",
     // total_good_days_accuracy_wise: "Good Days Accuracy Wise (Days)",
-    total_good_days_money_wise: "Good Days Money Wise (Days)",
-    total_days: "Total Days Model In Use (Days)",
+    total_good_days_money_wise: "Good Days Money Wise",
+    total_days: "Total Days Model Used",
   };
 
   const getKpiCardBorderColor = (metricName, metricValue) => {
