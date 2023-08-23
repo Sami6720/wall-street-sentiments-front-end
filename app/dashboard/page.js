@@ -69,7 +69,7 @@ export default function Dashboard() {
               sx={{
                 width: { xs: "1", md: "23%" },
                 height: { xs: "1", md: "23%" },
-                padding: { md: "1rem" },
+                padding: "0.5rem",
               }}
               className="modelAccuracyKPICard"
             >
@@ -86,13 +86,13 @@ export default function Dashboard() {
     : null;
 
   return (
-    <Box className="ComponentHolder" display="flex">
+    <Box className="ComponentHolder" display="flex" justifyContent="center">
       <Box
         className="ControlPanelSideBar"
         sx={{
           width: { md: "15%" },
           padding: "1rem",
-          display: { md: "flex" },
+          display: { md: "flex", xs: "none" },
           flexDirection: { md: "column" },
           borderRight: "1px solid #e0e0e0",
         }}
@@ -118,7 +118,7 @@ export default function Dashboard() {
       <Box
         className="MainContent"
         sx={{
-          width: { xs: "85%", md: "85%" },
+          width: { xs: "100%", md: "85%" },
           padding: "1rem",
           display: "flex",
           flexDirection: "column",
