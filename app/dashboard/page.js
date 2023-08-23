@@ -12,6 +12,7 @@ import { getModelPerfMetrics } from "../redux/slices/async/modelPerfMetrics";
 import { getModelPredictions } from "../redux/slices/async/modelPredictions";
 import { getStockMetrics } from "../redux/slices/async/stockMetricsSlice";
 import SwipeableTemporaryDrawer from "./components/SwipeableTemporaryDrawer";
+import NavbarComp from "../homeComponents/NavbarComp";
 
 export default function Dashboard() {
   const dispatch = useDispatch();
@@ -120,11 +121,23 @@ export default function Dashboard() {
         className="MainContent"
         sx={{
           width: { xs: "100%", md: "85%" },
-          padding: "1rem",
           display: "flex",
           flexDirection: "column",
+          justifyContent: "center",
         }}
       >
+        <Box
+          sx={{
+            display: { md: "none", xs: "flex" },
+            marginTop: 0,
+            marginBottom: 0.5,
+            padding: 0,
+            position: "sticky",
+            top: 0,
+          }}
+        >
+          <NavbarComp></NavbarComp>
+        </Box>
         <Box
           className="KpiCardContainer"
           display="flex"
