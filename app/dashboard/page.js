@@ -123,7 +123,6 @@ export default function Dashboard() {
           width: { xs: "100%", md: "85%" },
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
         }}
       >
         <Box
