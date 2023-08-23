@@ -29,7 +29,6 @@ export default function RootLayout({ children }) {
         <body className={inter.className} suppressHydrationWarning={true}>
           <Box>
             <ThemeProvider theme={theme}>
-              <NavbarComp />
               {children}
             </ThemeProvider>
           </Box>

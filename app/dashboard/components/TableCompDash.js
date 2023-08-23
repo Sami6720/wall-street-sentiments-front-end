@@ -48,7 +48,8 @@ export default function TableCompDash() {
             <TableCell align="center">Rank</TableCell>
             <TableCell align="center">Stock</TableCell>
             <TableCell align="center">Model</TableCell>
-            <TableCell align="center">Prediction</TableCell>
+            <TableCell align="center">Prediction Today</TableCell>
+            <TableCell align="center">Prediction Last Day</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -74,6 +75,15 @@ export default function TableCompDash() {
                         <Chip label="Buy" color="success" />
                       ) : (
                         <Chip label="Don't buy" color="warning" />
+                      )}
+                    </TableCell>
+                    <TableCell align="center">
+                      {row.prev_weekday_prediction === 1 ? (
+                        <Chip label="Buy" color="success" />
+                      ) : row.prev_weekday_prediction === 0 ? (
+                        <Chip label="Don't buy" color="warning" />
+                      ) : (
+                        <Chip label="No Prediction" color="info" />
                       )}
                     </TableCell>
                   </TableRow>

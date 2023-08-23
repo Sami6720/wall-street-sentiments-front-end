@@ -2,21 +2,17 @@
 
 import React, { useEffect } from "react";
 import { KpiCard } from "./components/KpiCard";
-import { Box, CircularProgress, Container } from "@mui/material";
-// import TableCompDash from "./components/TableCompDash";
+import { Box, Typography } from "@mui/material";
+
 import ControlPanelCard from "./components/ControlPanelCard";
-import LineGraph from "./components/LineGraph";
-import PieGraph from "./components/PieGraph";
+import TabsComp from "./components/TabsComp";
 
 import { useDispatch, useSelector } from "react-redux";
 import { getModelPerfMetrics } from "../redux/slices/async/modelPerfMetrics";
 import { getModelPredictions } from "../redux/slices/async/modelPredictions";
 import { getStockMetrics } from "../redux/slices/async/stockMetricsSlice";
-import dynamic from "next/dynamic";
-
-const TableCompDash = dynamic(() => import("./components/TableCompDash"), {
-  ssr: false,
-});
+import SwipeableTemporaryDrawer from "./components/SwipeableTemporaryDrawer";
+import NavbarComp from "../homeComponents/NavbarComp";
 
 export default function Dashboard() {
   const dispatch = useDispatch();
@@ -43,10 +39,10 @@ export default function Dashboard() {
   const metricNameToPurposeMapping = {
     historic_buy_predictions_profit: "Historic Predictions Profit ($)",
     historic_not_buy_predictions_save: "Historic Predictions Save ($)",
-    cumulative_accuracy: "Cumulative Accuracy (%)",
-    total_good_days_accuracy_wise: "Good Days Accuracy Wise (Days)",
-    total_good_days_money_wise: "Good Days Money Wise (Days)",
-    total_days: "Total Days Model In Use (Days)",
+    // cumulative_accuracy: "Cumulative Accuracy (%)",
+    // total_good_days_accuracy_wise: "Good Days Accuracy Wise (Days)",
+    total_good_days_money_wise: "Good Days Money Wise",
+    total_days: "Total Days Model Used",
   };
 
   const getKpiCardBorderColor = (metricName, metricValue) => {
@@ -73,8 +69,9 @@ export default function Dashboard() {
             <Box
               key={metricName}
               sx={{
-                width: { xs: "1", md: "30%" },
-                height: { xs: "1", md: "30%" },
+                width: { xs: "1", md: "23%" },
+                height: { xs: "1", md: "23%" },
+                padding: "0.5rem",
               }}
               className="modelAccuracyKPICard"
             >
@@ -91,70 +88,70 @@ export default function Dashboard() {
     : null;
 
   return (
-    <Container>
+    <Box className="ComponentHolder" display="flex" justifyContent="center">
       <Box
+        className="ControlPanelSideBar"
         sx={{
-          display: "flex",
-          flexDirection: { xs: "column", md: "row" },
-          paddingTop: 5,
-          justifyContent: "space-evenly",
-          flexWrap: "wrap",
-        }}
-        className="kpiCardContainer"
-      >
-        {modelPerfMetricsState.loading ? (
-          <CircularProgress></CircularProgress>
-        ) : (
-          kpiCards
-        )}
-      </Box>
-      <Box
-        className="tableAndVizContainer"
-        sx={{
-          display: "flex",
-          flexDirection: { xs: "column", md: "row" },
-          flexWrap: "wrap",
-          justifyContent: "space-evenly",
-          alignItems: "stretch",
+          width: { md: "15%" },
+          padding: "1rem",
+          display: { md: "flex", xs: "none" },
+          flexDirection: { md: "column" },
+          borderRight: "1px solid #e0e0e0",
         }}
       >
-        <Box
+        <Typography
+          variant="h4"
+          noWrap
+          component="a"
+          href="/"
           sx={{
-            width: { xs: "1", md: "30%" },
-            className: "controlPanelCardContainer",
-            paddingTop: 5,
+            mr: 2,
+            fontWeight: 500,
+            letterSpacing: ".3rem",
+            color: "inherit",
+            textDecoration: "none",
+            alignSelf: "center",
           }}
         >
-          <ControlPanelCard></ControlPanelCard>
-        </Box>
-        <Box
-          sx={{
-            width: { xs: "1", md: "60%" },
-            paddingTop: 5,
-          }}
-          className="tableContainer"
-        >
-          <TableCompDash></TableCompDash>
-        </Box>
-        <Box
-          sx={{
-            width: { xs: "1", md: "30%" },
-            className: "pieGraphContainer",
-            paddingTop: 5,
-          }}
-        >
-          <PieGraph></PieGraph>
-        </Box>
-        <Box
-          sx={{
-            width: { xs: "1", md: "60%" },
-            className: "lineGraphContainer",
-            paddingTop: 5,
-          }}
-        >
-          <LineGraph></LineGraph>
-        </Box>
+          WSS
+        </Typography>
+        <ControlPanelCard />
       </Box>
-    </Container>
+      <Box
+        className="MainContent"
+        sx={{
+          width: { xs: "100%", md: "85%" },
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <Box
+          sx={{
+            display: { md: "none", xs: "flex" },
+            marginTop: 0,
+            marginBottom: 0.5,
+            padding: 0,
+            position: "sticky",
+            top: 0,
+          }}
+        >
+          <NavbarComp></NavbarComp>
+        </Box>
+        <Box
+          className="KpiCardContainer"
+          display="flex"
+          justifyContent="space-between"
+          sx={{
+            paddingBottom: "1rem",
+            marginBottom: "1rem",
+            flexDirection: { xs: "column", md: "row" },
+          }}
+        >
+          {kpiCards}
+        </Box>
+        <TabsComp></TabsComp>
+      </Box>
+      <SwipeableTemporaryDrawer />
+    </Box>
   );
 }

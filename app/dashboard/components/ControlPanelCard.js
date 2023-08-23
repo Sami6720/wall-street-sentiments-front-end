@@ -2,7 +2,6 @@
 
 import {
   Box,
-  Card,
   CardContent,
   FormControl,
   FormControlLabel,
@@ -55,63 +54,177 @@ const ControlPanelCard = () => {
   };
 
   return (
-    <Card
+    <CardContent
       sx={{
-        borderRadius: "10px",
-        boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.2)",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
+        border: 0,
+        margin: 0,
       }}
     >
-      <CardContent>
-        <Box>
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Model</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              label="Model"
-              onChange={(e) => {
-                dispatch(setSelectedModelName(e.target.value));
-              }}
-            >
-              {modelNames.map((modelName) => (
-                <MenuItem key={modelName} value={modelName}>
-                  {modelName}
+      <Box
+        sx={{
+          borderRadius: "10px",
+          boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.2)",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+        }}
+      >
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Model</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            label="Model"
+            onChange={(e) => {
+              dispatch(setSelectedModelName(e.target.value));
+            }}
+          >
+            {modelNames.map((modelName) => (
+              <MenuItem key={modelName} value={modelName}>
+                {modelName}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </Box>
+      <Box
+        sx={{
+          paddingTop: 2,
+        }}
+      >
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Stock</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            label="Stock"
+            onChange={(e) => {
+              dispatch(setSelectedStockName(e.target.value));
+            }}
+          >
+            {stockMetricsState.loading ? (
+              <MenuItem>Loading...</MenuItem>
+            ) : (
+              Object.keys(stockMetricsState.data).map((stock) => (
+                <MenuItem key={stock} value={stock}>
+                  {stock}
                 </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </Box>
-        <Box
-          sx={{
-            paddingTop: 2,
-          }}
-        >
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Stock</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              label="Stock"
-              onChange={(e) => {
-                dispatch(setSelectedStockName(e.target.value));
-              }}
-            >
-              {stockMetricsState.loading ? (
-                <MenuItem>Loading...</MenuItem>
-              ) : (
-                Object.keys(stockMetricsState.data).map((stock) => (
-                  <MenuItem key={stock} value={stock}>
-                    {stock}
-                  </MenuItem>
-                ))
-              )}
-            </Select>
-          </FormControl>
-        </Box>
+              ))
+            )}
+          </Select>
+        </FormControl>
+      </Box>
 
+      <Box
+        sx={{
+          paddingTop: 2,
+        }}
+      >
+        {" "}
+        <Typography>
+          Select Metrics For{" "}
+          <Tooltip title="For now, numerical metrics for only stocks can be shown">
+            <InfoIcon fontSize="string" color="info"></InfoIcon>
+          </Tooltip>
+        </Typography>
+        <FormControl>
+          <RadioGroup
+            row
+            aria-labelledby="demo-row-radio-buttons-group-label"
+            name="row-radio-buttons-group"
+            onChange={(e) => {
+              dispatch(resetSelectedCategoricaclMetric());
+              dispatch(setSelectedMetricsFor(e.target.value));
+            }}
+          >
+            <FormControlLabel
+              value="stocks"
+              control={<Radio />}
+              label="Stocks"
+            />
+            <FormControlLabel
+              value="models"
+              control={<Radio />}
+              label="Models"
+            />
+          </RadioGroup>
+        </FormControl>
+      </Box>
+      <Box
+        sx={{
+          paddingTop: 2,
+        }}
+      >
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">
+            Categorical Metric
+          </InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            label="Categorical Metric"
+            onChange={(e) => {
+              dispatch(setSelectedCategoricaclMetric(e.target.value));
+            }}
+          >
+            {stockMetricsState.loading || modelPerfMetricsState.loading ? (
+              <MenuItem>Loading...</MenuItem>
+            ) : selectedMetricsForState.data === "stocks" ? (
+              Object.keys(
+                stockMetricsState.data[Object.keys(stockMetricsState.data)[0]]
+                  .categorical
+              ).map((metricName) => (
+                <MenuItem key={metricName} value={metricName}>
+                  {convertSnakeToTitleCase(metricName)}
+                </MenuItem>
+              ))
+            ) : (
+              Object.keys(modelCategoricalMetrics).map((metricName) => (
+                <MenuItem
+                  key={metricName}
+                  value={modelCategoricalMetrics[metricName]}
+                >
+                  {metricName}
+                </MenuItem>
+              ))
+            )}
+          </Select>
+        </FormControl>
+      </Box>
+      <Box
+        sx={{
+          paddingTop: 2,
+        }}
+      >
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">
+            Numerical Metric
+          </InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            label="Numerical Metric"
+            onChange={(e) => {
+              dispatch(setSelectedNumericalMetric(e.target.value));
+            }}
+          >
+            {stockMetricsState.loading ? (
+              <MenuItem>Loading...</MenuItem>
+            ) : (
+              Object.keys(
+                stockMetricsState.data[Object.keys(stockMetricsState.data)[0]]
+                  .numerical
+              ).map((metricName) => (
+                <MenuItem key={metricName} value={metricName}>
+                  {convertSnakeToTitleCase(metricName)}
+                </MenuItem>
+              ))
+            )}
+          </Select>
+        </FormControl>
         <Box
           sx={{
             paddingTop: 2,
@@ -119,131 +232,23 @@ const ControlPanelCard = () => {
         >
           {" "}
           <Typography>
-            Select Metrics For{" "}
-            <Tooltip title="For now, numerical metrics for only stocks can be shown">
+            Historical Span (Days){" "}
+            <Tooltip title="For now, numerical metrics only">
               <InfoIcon fontSize="string" color="info"></InfoIcon>
             </Tooltip>
           </Typography>
-          <FormControl>
-            <RadioGroup
-              row
-              aria-labelledby="demo-row-radio-buttons-group-label"
-              name="row-radio-buttons-group"
-              onChange={(e) => {
-                dispatch(resetSelectedCategoricaclMetric());
-                dispatch(setSelectedMetricsFor(e.target.value));
-              }}
-            >
-              <FormControlLabel
-                value="stocks"
-                control={<Radio />}
-                label="Stocks"
-              />
-              <FormControlLabel
-                value="models"
-                control={<Radio />}
-                label="Models"
-              />
-            </RadioGroup>
-          </FormControl>
-        </Box>
-        <Box
-          sx={{
-            paddingTop: 2,
-          }}
-        >
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">
-              Categorical Metric
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              label="Categorical Metric"
-              onChange={(e) => {
-                dispatch(setSelectedCategoricaclMetric(e.target.value));
-              }}
-            >
-              {stockMetricsState.loading || modelPerfMetricsState.loading ? (
-                <MenuItem>Loading...</MenuItem>
-              ) : selectedMetricsForState.data === "stocks" ? (
-                Object.keys(
-                  stockMetricsState.data[Object.keys(stockMetricsState.data)[0]]
-                    .categorical
-                ).map((metricName) => (
-                  <MenuItem key={metricName} value={metricName}>
-                    {convertSnakeToTitleCase(metricName)}
-                  </MenuItem>
-                ))
-              ) : (
-                Object.keys(modelCategoricalMetrics).map((metricName) => (
-                  <MenuItem
-                    key={metricName}
-                    value={modelCategoricalMetrics[metricName]}
-                  >
-                    {metricName}
-                  </MenuItem>
-                ))
-              )}
-            </Select>
-          </FormControl>
-        </Box>
-        <Box
-          sx={{
-            paddingTop: 2,
-          }}
-        >
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">
-              Numerical Metric
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              label="Numerical Metric"
-              onChange={(e) => {
-                dispatch(setSelectedNumericalMetric(e.target.value));
-              }}
-            >
-              {stockMetricsState.loading ? (
-                <MenuItem>Loading...</MenuItem>
-              ) : (
-                Object.keys(
-                  stockMetricsState.data[Object.keys(stockMetricsState.data)[0]]
-                    .numerical
-                ).map((metricName) => (
-                  <MenuItem key={metricName} value={metricName}>
-                    {convertSnakeToTitleCase(metricName)}
-                  </MenuItem>
-                ))
-              )}
-            </Select>
-          </FormControl>
-          <Box
-            sx={{
-              paddingTop: 2,
+          <Slider
+            defaultValue={historicalWindowState.maxLength} // Start from the right end
+            valueLabelDisplay="auto"
+            min={1}
+            max={historicalWindowState.maxLength}
+            onChange={(e) => {
+              dispatch(setHistoricalWindow(e.target.value - 1)); // Subtract 1 to account for the 0 index
             }}
-          >
-            {" "}
-            <Typography>
-              Historical Span (Days){" "}
-              <Tooltip title="For now, numerical metrics only">
-                <InfoIcon fontSize="string" color="info"></InfoIcon>
-              </Tooltip>
-            </Typography>
-            <Slider
-              defaultValue={historicalWindowState.maxLength} // Start from the right end
-              valueLabelDisplay="auto"
-              min={1}
-              max={historicalWindowState.maxLength}
-              onChange={(e) => {
-                dispatch(setHistoricalWindow(e.target.value - 1)); // Subtract 1 to account for the 0 index
-              }}
-            />
-          </Box>
+          />
         </Box>
-      </CardContent>
-    </Card>
+      </Box>
+    </CardContent>
   );
 };
 
