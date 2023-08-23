@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getModelPerfMetrics } from "../redux/slices/async/modelPerfMetrics";
 import { getModelPredictions } from "../redux/slices/async/modelPredictions";
 import { getStockMetrics } from "../redux/slices/async/stockMetricsSlice";
+import SwipeableTemporaryDrawer from "./components/SwipeableTemporaryDrawer";
 
 export default function Dashboard() {
   const dispatch = useDispatch();
@@ -138,6 +139,7 @@ export default function Dashboard() {
         </Box>
         <TabsComp></TabsComp>
       </Box>
+      <SwipeableTemporaryDrawer />
     </Box>
   );
 }
