@@ -59,6 +59,9 @@ export default function BasicTabs() {
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
+          variant="scrollable"
+          scrollButtons
+          allowScrollButtonsMobile
         >
           <Tab label="Predictions Table" {...a11yProps(0)} />
           <Tab label="Numeric Data Viz" {...a11yProps(1)} />
