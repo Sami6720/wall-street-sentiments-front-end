@@ -5,9 +5,10 @@ import {
   Card,
   CardContent,
   CircularProgress,
+  Tooltip,
   Typography,
 } from "@mui/material";
-
+import InfoIcon from "@mui/icons-material/Info";
 import React from "react";
 
 export const KpiCard = (props) => {
@@ -31,7 +32,12 @@ export const KpiCard = (props) => {
           ) : (
             <Typography variant="h4">{props.value}</Typography>
           )}
-          <Typography>{props.purpose}</Typography>
+          <Typography>
+            {props.purpose}{" "}
+            <Tooltip title={props.details}>
+              <InfoIcon color="info" fontSize="string"></InfoIcon>
+            </Tooltip>
+          </Typography>
         </Box>
       </CardContent>
     </Card>

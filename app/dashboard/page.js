@@ -45,6 +45,16 @@ export default function Dashboard() {
     total_days: "Total Days Model Used",
   };
 
+  const metricNameToDetails = {
+    historic_buy_predictions_profit:
+      "How much money you would have MADE if you BOUGHT one unit of stock for which the model predicted a BUY",
+    historic_not_buy_predictions_save:
+      "How much money you would have SAVED if you DID NOT buy one unit of stock for which the model predicted a DON'T BUY",
+    total_good_days_money_wise:
+      "A good days is a day on which the model makes more buy prediction profit and more not buy prediction save then a random model",
+    total_days: "The total days since the model was trained and deployed",
+  };
+
   const getKpiCardBorderColor = (metricName, metricValue) => {
     if (
       ![
@@ -80,6 +90,7 @@ export default function Dashboard() {
                 value={metricValue}
                 loading={false}
                 borderColorKPI={getKpiCardBorderColor(metricName, metricValue)}
+                details={metricNameToDetails[metricName]}
               />
             </Box>
           );
