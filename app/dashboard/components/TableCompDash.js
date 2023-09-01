@@ -8,8 +8,15 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { TablePagination, CircularProgress, Chip, Box } from "@mui/material";
+import {
+  TablePagination,
+  CircularProgress,
+  Chip,
+  Box,
+  Tooltip,
+} from "@mui/material";
 import { useSelector } from "react-redux";
+import InfoIcon from "@mui/icons-material/Info";
 
 export default function TableCompDash() {
   const [pg, setpg] = React.useState(0);
@@ -48,8 +55,18 @@ export default function TableCompDash() {
             <TableCell align="center">Rank</TableCell>
             <TableCell align="center">Stock</TableCell>
             <TableCell align="center">Model</TableCell>
-            <TableCell align="center">Prediction Today</TableCell>
-            <TableCell align="center">Prediction Last Day</TableCell>
+            <TableCell align="center">
+              Prediction Today
+              <Tooltip title="Note prediction is updated around 9:30 AM every trading day">
+                <InfoIcon color="info" fontSize="string"></InfoIcon>
+              </Tooltip>
+            </TableCell>
+            <TableCell align="center">
+              Prediction Last Day
+              <Tooltip title="Note this contains the last trading day predictions once the Prediction Today column is updated">
+                <InfoIcon color="info" fontSize="string"></InfoIcon>
+              </Tooltip>
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
