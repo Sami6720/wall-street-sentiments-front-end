@@ -8,8 +8,15 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { TablePagination, CircularProgress, Chip, Box } from "@mui/material";
+import {
+  TablePagination,
+  CircularProgress,
+  Chip,
+  Box,
+  Tooltip,
+} from "@mui/material";
 import { useSelector } from "react-redux";
+import InfoIcon from "@mui/icons-material/Info";
 
 export default function TableCompDash() {
   const [pg, setpg] = React.useState(0);
@@ -48,7 +55,18 @@ export default function TableCompDash() {
             <TableCell align="center">Rank</TableCell>
             <TableCell align="center">Stock</TableCell>
             <TableCell align="center">Model</TableCell>
-            <TableCell align="center">Prediction</TableCell>
+            <TableCell align="center">
+              Prediction Today
+              <Tooltip title="Note prediction is updated around 9:30 AM every trading day">
+                <InfoIcon color="info" fontSize="string"></InfoIcon>
+              </Tooltip>
+            </TableCell>
+            <TableCell align="center">
+              Prediction Last Day
+              <Tooltip title="Note this contains the last trading day predictions once the Prediction Today column is updated">
+                <InfoIcon color="info" fontSize="string"></InfoIcon>
+              </Tooltip>
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -74,6 +92,15 @@ export default function TableCompDash() {
                         <Chip label="Buy" color="success" />
                       ) : (
                         <Chip label="Don't buy" color="warning" />
+                      )}
+                    </TableCell>
+                    <TableCell align="center">
+                      {row.prev_weekday_prediction === 1 ? (
+                        <Chip label="Buy" color="success" />
+                      ) : row.prev_weekday_prediction === 0 ? (
+                        <Chip label="Don't buy" color="warning" />
+                      ) : (
+                        <Chip label="No Prediction" color="info" />
                       )}
                     </TableCell>
                   </TableRow>
