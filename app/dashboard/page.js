@@ -66,7 +66,6 @@ export default function Dashboard() {
     ? Object.entries(modelPerfMetricsState.data[selectedModelName]).map(
         ([metricName, metricValue]) => {
           if (!metricNameToPurposeMapping[metricName]) {
-            console.log(`metricName not found in mapping ${metricName}`);
             return null;
           }
           return (

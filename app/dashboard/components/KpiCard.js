@@ -11,7 +11,6 @@ import {
 import React from "react";
 
 export const KpiCard = (props) => {
-  console.log(props);
   return (
     <Card
       sx={{
